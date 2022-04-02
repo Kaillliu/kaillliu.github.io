@@ -4,6 +4,60 @@
   
     
     <entry>
+      <title>设计模式笔记之Adapter（适配器）模式</title>
+      <link href="/2022/04/02/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%AC%94%E8%AE%B0%E4%B9%8BAdapter%EF%BC%88%E9%80%82%E9%85%8D%E5%99%A8%EF%BC%89%E6%A8%A1%E5%BC%8F/"/>
+      <url>/2022/04/02/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%AC%94%E8%AE%B0%E4%B9%8BAdapter%EF%BC%88%E9%80%82%E9%85%8D%E5%99%A8%EF%BC%89%E6%A8%A1%E5%BC%8F/</url>
+      
+        <content type="html"><![CDATA[<p><font size='6'>书本网盘链接😀</font></p><blockquote><p>链接：<a href="https://pan.baidu.com/s/1KU0Ik8WTDn5fwBGvDd5dQw?pwd=rlye">https://pan.baidu.com/s/1KU0Ik8WTDn5fwBGvDd5dQw?pwd=rlye</a><br>提取码：rlye</p></blockquote><h1>Adapter（适配器）模式</h1><h2 id="意图">意图</h2><p>将一个类的接口转换成另外一个客户希望的接口。Adapter 模式使得原本由于接口不兼容而不能一起工作的那些类可以一起工作。</p><p>注：适配器模式在详细设计阶段不需要考虑它，它是为了对现有系统或产品接口兼容时，也就是既成事实的情况下的<strong>补救措施</strong>。</p><h2 id="适用性">适用性</h2><ol><li>你想使用一个已经存在的类，而它的接口不符合你的需求。</li></ol><ul><li>你想创建一个可以复用的类，该类可以与其他不相关的类或不可预见的类（即那些接口可能不一定兼容的类）协同工作。</li><li>（仅适用于对象Adapter）你想使用一些已经存在的子类，但是不可能对每一个都进行子类化以匹配它们的接口。对象适配器可以适配它的父类接口。</li></ul><h2 id="结构">结构</h2><p><strong>类适配器模式</strong></p><p><img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204021711585.png" alt=""></p><p><strong>对象适配器模式</strong></p><p><img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204021712585.png" alt=""></p><h2 id="登场角色">登场角色</h2><ul><li><p>**Target (目标角色 对象，要用的接口) **</p><p>定义Client所需的方法。</p></li><li><p>**Client (使用场景 请求者) **</p><p>与符合Target接口的对象协同，使用Target角色定义的方法进行具体处理。</p></li><li><p>**Adaptee (被适配) **</p><p>定义一个已经存在的接角色，这个角色需要适配。</p></li><li><p><strong>Adapter (适配器，把Adaptee接口转换为Target可用的接口)</strong></p><p>对Adaptee的接口与Target接口进行适配</p></li></ul><h2 id="优点">优点</h2><ol><li><p>可以让两个没有任何关系的类在一起运行，只要适配器这个角色能够搞定他们就成。</p></li><li><p>增加了类的透明性</p></li><li><p>提高了类的复用度</p></li><li><p>灵活性非常好</p></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 计算机基础 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 设计模式 </tag>
+            
+            <tag> 计算机基础 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>设计模式笔记之Iterator（迭代器）模式</title>
+      <link href="/2022/04/02/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%AC%94%E8%AE%B0%E4%B9%8BIterator%EF%BC%88%E8%BF%AD%E4%BB%A3%E5%99%A8%EF%BC%89%E6%A8%A1%E5%BC%8F/"/>
+      <url>/2022/04/02/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%AC%94%E8%AE%B0%E4%B9%8BIterator%EF%BC%88%E8%BF%AD%E4%BB%A3%E5%99%A8%EF%BC%89%E6%A8%A1%E5%BC%8F/</url>
+      
+        <content type="html"><![CDATA[<p><font size='6'>书本网盘链接😀</font></p><blockquote><p>链接：<a href="https://pan.baidu.com/s/1KU0Ik8WTDn5fwBGvDd5dQw?pwd=rlye">https://pan.baidu.com/s/1KU0Ik8WTDn5fwBGvDd5dQw?pwd=rlye</a><br>提取码：rlye</p></blockquote><h1>Iterator（迭代器）模式</h1><h2 id="意图-2">意图</h2><p>提供一种方法顺序访问一个聚合对象中各个元素, 而又不需暴露该对象的内部表示，即为遍历和实现可以分离开来。</p><h2 id="适用性-2">适用性</h2><ol><li>访问一个聚合对象的内容而无需暴露它的内部表示。</li><li>支持对聚合对象的多种遍历。</li><li>为遍历不同的聚合结构提供一个统一的接口（即, 支持多态迭代）。</li></ol><h2 id="结构-2">结构</h2><p><img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204021558441.png" alt="迭代器模式结构"></p><h2 id="登场角色-2">登场角色</h2><ul><li><p><strong>Iterator 迭代器</strong></p><p>负责定义访问和遍历元素的接口（API）。</p></li><li><p><strong>Concretelterator 具体的迭代器</strong></p><p>负责实现Iterator角色所定义的接口（API）。</p></li><li><p><strong>Aggregate 集合</strong></p><p>集合定义创建Iterator角色的接口，在示例程序中，由Aggregate接口扮演此角色，里面定义了Iterator方法。</p></li><li><p><strong>ConcreteAggregate 具体的集合</strong></p><p>负责实现Aggregate角色所定义的接口。</p></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 计算机基础 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 设计模式 </tag>
+            
+            <tag> 计算机基础 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Leetcode-084,085-单调栈-数组中的最大矩阵,最大矩阵</title>
       <link href="/2022/03/29/leetcode-42-%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9C%80%E5%A4%A7%E7%9F%A9%E5%BD%A2/"/>
       <url>/2022/03/29/leetcode-42-%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9C%80%E5%A4%A7%E7%9F%A9%E5%BD%A2/</url>
