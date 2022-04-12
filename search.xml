@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>设计模式总览</title>
+      <link href="/2022/04/12/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+      <url>/2022/04/12/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</url>
+      
+        <content type="html"><![CDATA[<p><font size='6'>书本网盘链接😀</font></p><blockquote><p>链接：<a href="https://pan.baidu.com/s/1KU0Ik8WTDn5fwBGvDd5dQw?pwd=rlye">https://pan.baidu.com/s/1KU0Ik8WTDn5fwBGvDd5dQw?pwd=rlye</a><br>提取码：rlye</p></blockquote><p>CSDN总结：</p><ul><li><a href="https://blog.csdn.net/cooldragon/article/details/52164380">https://blog.csdn.net/cooldragon/article/details/52164380</a></li></ul><table><thead><tr><th style="text-align:center"><strong>范围</strong></th><th style="text-align:center"><strong>创建型</strong></th><th style="text-align:center"><strong>结构型</strong></th><th style="text-align:center">行为型</th></tr></thead><tbody><tr><td style="text-align:center"><strong>类</strong></td><td style="text-align:center">Factory Method（工厂方法）</td><td style="text-align:center">Adapter(类)（适配器）</td><td style="text-align:center">Interpreter（解释器）<br>Template Method（模版方法）</td></tr><tr><td style="text-align:center"><strong>对象</strong></td><td style="text-align:center">Abstract Factory（抽象工厂）<br>Builder（建造者）<br>Prototype（原型）<br>Singleton（单例）</td><td style="text-align:center">Adapter(对象)（适配器)<br>Bridge（桥接）<br>Composite（组合）<br>Decorator（装饰者）<br>Façade（外观）<br>Flyweight（享元）<br>Proxy（代理）</td><td style="text-align:center">Chain of Responsibility（职责链）<br>CoMmand（命令）<BR>Iterator（迭代器）<BR>Mediator（中介者）<BR>Memento（备忘录）<br>Observer（观察者）<br>State（状体）<BR>Strategy（策略）<br>Visitor（访问者）</td></tr></tbody></table>]]></content>
+      
+      
+      <categories>
+          
+          <category> 计算机基础 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 设计模式 </tag>
+            
+            <tag> 计算机基础 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>设计模式笔记之Adapter（适配器）模式</title>
       <link href="/2022/04/02/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%AC%94%E8%AE%B0%E4%B9%8BAdapter%EF%BC%88%E9%80%82%E9%85%8D%E5%99%A8%EF%BC%89%E6%A8%A1%E5%BC%8F/"/>
       <url>/2022/04/02/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%AC%94%E8%AE%B0%E4%B9%8BAdapter%EF%BC%88%E9%80%82%E9%85%8D%E5%99%A8%EF%BC%89%E6%A8%A1%E5%BC%8F/</url>
