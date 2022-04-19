@@ -1,0 +1,361 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>在VMware上安装Centos7系统 | K A I</title><meta name="keywords" content="Web开发"><meta name="author" content="Kaillliu"><meta name="copyright" content="Kaillliu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="在VMware上安装Centos7系统，并用Xshell连接">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在VMware上安装Centos7系统">
+<meta property="og:url" content="http://kaillliu.github.io/2022/04/19/%E5%9C%A8VMware%E4%B8%8A%E5%AE%89%E8%A3%85Centos7%E7%B3%BB%E7%BB%9F%E5%9C%A8VMware%E4%B8%8A%E5%AE%89%E8%A3%85Centos7%E7%B3%BB%E7%BB%9F/index.html">
+<meta property="og:site_name" content="K A I">
+<meta property="og:description" content="在VMware上安装Centos7系统，并用Xshell连接">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/97025298_p0.png">
+<meta property="article:published_time" content="2022-04-19T09:18:13.000Z">
+<meta property="article:modified_time" content="2022-04-19T10:15:48.310Z">
+<meta property="article:author" content="Kaillliu">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="Centos">
+<meta property="article:tag" content="虚拟机">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/97025298_p0.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://kaillliu.github.io/2022/04/19/%E5%9C%A8VMware%E4%B8%8A%E5%AE%89%E8%A3%85Centos7%E7%B3%BB%E7%BB%9F%E5%9C%A8VMware%E4%B8%8A%E5%AE%89%E8%A3%85Centos7%E7%B3%BB%E7%BB%9F/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="manifest" href="/pwa/manifest.json"/><link rel="apple-touch-icon" sizes="180x180" href="/pwa/apple-touch-icon.png"/><link rel="icon" type="image/png" sizes="32x32" href="/pwa/32.png"/><link rel="icon" type="image/png" sizes="16x16" href="/pwa/16.png"/><link rel="mask-icon" href="/pwa/safari-pinned-tab.svg" color="#5bbad5"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":600},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#263238","bgDark":"#1f1f1f","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '在VMware上安装Centos7系统',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-04-19 18:15:48'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.1"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/EXKx_vaVAAA9c9Z.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">8</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/97025298_p0.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">K A I</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">在VMware上安装Centos7系统</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-04-19T09:18:13.000Z" title="发表于 2022-04-19 17:18:13">2022-04-19</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-04-19T10:15:48.310Z" title="更新于 2022-04-19 18:15:48">2022-04-19</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Web%E5%BC%80%E5%8F%91/">Web开发</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>6分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="在VMware上安装Centos7系统"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="前言">前言</h2>
+<p>本地虚拟机服务器，使用CentOs7，运维环境是<strong>宝塔面板</strong>。</p>
+<h2 id="工具">工具</h2>
+<ul>
+<li>
+<p>VMware Workstation Pro 15.5.5（虚拟机）</p>
+</li>
+<li>
+<p>CentOs7（iso镜像）</p>
+<p>阿里云镜像：<a target="_blank" rel="noopener" href="http://mirrors.aliyun.com/centos/7/isos/x86_64/">http://mirrors.aliyun.com/centos/7/isos/x86_64/</a><br>
+<img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204191712713.png" alt="image-20220419165325629"></p>
+</li>
+<li>
+<p>Xshell（用于连接虚拟机，方便使用Linux命令，是一个远程工具，右键就可以复制粘贴，还可以拉滚动条。）</p>
+</li>
+</ul>
+<hr>
+<h2 id="虚拟机vmnet8-ip">虚拟机vmnet8 ip</h2>
+<p><strong>虚拟机里面的虚拟网络需要设置一下</strong>，<strong>虚拟机里面的虚拟网络需要处理一下</strong>，<strong>虚拟机里面的虚拟网络需要编辑一下</strong>。<br>
+<img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204191712061.png" alt="Mm50BuAB58u6GHSRCrAxeBwY08ajBDwH.png"></p>
+<p>下图标记2的地方，勾勾要去掉，去掉之后点击NAT设置，查看虚拟机的vmnet8 ip，把红框里的<strong>子网IP</strong>、<strong>子网掩码</strong>、<strong>默认网关</strong>用文本记下来，然后点击确定。<br>
+<img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204191712865.png" alt="PEn1EY8Rp4CXs882PsaWz768yWBlF8Wk.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204191712146.png" alt="rLYAalNQwRaPAAxh3b7LkOGDdYfSVay2.png"></p>
+<p>记住子网IP、子网掩码、网关</p>
+<h2 id="创建虚拟机">创建虚拟机</h2>
+<p>点击<code>创建新的虚拟机</code>。<br>
+<img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204191712049.png" alt="0.png"></p>
+<p>点击<code>自定义</code>，下一步。<br>
+<img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204191712808.png" alt="1.png"></p>
+<p>选择虚拟机版本，我这里是15.5.5，下一步<br>
+<img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204191712070.png" alt="2.png"></p>
+<p>点击<code>稍后安装操作系统</code>，下一步。<br>
+<img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204191712761.png" alt="3.png"></p>
+<p>选择<code>Linux</code>操作系统，现在安装的是entOs7，所以版本选择<code>CentOs7 64位</code>，下一步。<br>
+<img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204191713052.png" alt="4.png"></p>
+<p>虚拟机名称随意，可以中文，这里我写的是服务器ip名（可以重命名的），为了方便定位，不用我说都懂的啦，从左边栏就可以看出100、101、102没有102，哎？我跳过102了？我是把流程走一遍再码字的，码字的时候，服务器已经ok了，不过问题不大，下一步。。。。<br>
+<img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204191713668.png" alt="5.png"></p>
+<p>默认（本站的核心是2个，但是我100、101都是1个核心，这里默认1个核心够用了），本地服务器，也就自己一个人访问，而且这里配置是跟本机电脑配置有关的，服务器一核心足矣（只要电脑带得动，给八核我也没意见），下一步。<br>
+<img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204191713936.png" alt="6.png"></p>
+<p>默认（本站的内存是1GB，但是我100、101都是2GB，这里默认1GB够用了），同上（<strong>如果在阿里云买服务器，我建议是1核心2GB内存哦</strong>），下一步。<br>
+<img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204191714588.png" alt="7.png"></p>
+<p>点击<code>使用网络地址转换(NAT)</code>，下一步。<br>
+<img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204191714018.png" alt="8.png"></p>
+<p>默认，下一步。<br>
+<img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204191714481.png" alt="9.png"></p>
+<p>默认，下一步。<br>
+<img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204191714407.png" alt="10.png"></p>
+<p>默认，下一步。<br>
+<img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204191714335.png" alt="11.png"></p>
+<p>默认（磁盘大小自己改，20GB实际上够了，下面选项默认），下一步。<br>
+<img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204191714437.png" alt="12.png"></p>
+<p>默认，下一步。<br>
+<img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204191714655.png" alt="13.png"></p>
+<p>点击<code>自定义硬件</code>。<br>
+<img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204191714920.png" alt="14.png"></p>
+<p>点击<code>打印机</code>，然后点击<code>移除</code>。<br>
+<img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204191714673.png" alt="15.png"></p>
+<p>跟着数字的步骤走（步骤3：选择下载好的CentOs7镜像，我个人是推荐放在服务器根目录下，看我图中的路径，这里不明白要留言哦）。<br>
+<img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204191714326.png" alt="16.png"></p>
+<p>点击<code>完成</code>。<br>
+<img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204191714239.png" alt="17.png"></p>
+<hr>
+<h2 id="安装CentOs7系统">安装CentOs7系统</h2>
+<p>点击<code>开启此虚拟机</code>。<br>
+<img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204191714462.png" alt="18.png"></p>
+<p>这里说一下，默认选中的是<code>Test this this media &amp; install CentOS 7</code>（白色字体是选中状态），按方向键↑然后回车（如果按键没效果，需要把鼠标点一下虚拟机显示屏）。<br>
+<img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204191714864.png" alt="19.png"></p>
+<p>中文在最下面，滚下去或者拉到下面才看到（下面的搜索<code>chinese</code>），点击<code>继续</code>。<br>
+<img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204191714708.png" alt="20.png"></p>
+<p>这里看一下自己的日期和时间是不是<code>亚洲/上海 时区</code>，不是的话自己进去调一下（百度）。<br>
+<img src="https://blog.langting.top/usr/uploads/2020/06/2155181254.png" alt="21.png"></p>
+<p>点击<code>软件选择</code>。<br>
+<img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204191714484.png" alt="22.png"></p>
+<p>把红框里的两个勾勾点上，完成。<br>
+<img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204191714554.png" alt="23.png"></p>
+<p>点击<code>安装位置</code>。<br>
+<img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204191714299.png" alt="24.png"></p>
+<p>点击<code>我要配置分区</code>，完成。<br>
+<img src="https://blog.langting.top/usr/uploads/2020/06/4292901772.png" alt="25.png"></p>
+<p>点击<code>点这里自动创建他们</code>，完成。<br>
+<img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204191714322.png" alt="26.png"></p>
+<p>默认，/boot（<strong>启动文件</strong>），swap（<strong>交换分区，类似windows虚拟内存</strong>。看内存总大小，如果内存足够大，这个空间就要设置很大，如果内存小于2G，那么这个空间设置成内存的2倍大小。），/（<strong>根分区</strong>），完成。<br>
+<img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204191715634.png" alt="27.png"></p>
+<p>点击<code>接受更改</code>。<br>
+<img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204191715050.png" alt="28.png"></p>
+<p>点击<code>网络和主机名</code>。<br>
+<img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204191715373.png" alt="29.png"></p>
+<p>打开<code>以太网</code>，修改主机名（也可以使用默认），然后点击应用（点完应用后看看以太网是不是关闭了，如果关闭了再点开），完成。<br>
+<img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204191715616.png" alt="30.png"></p>
+<p>点击<code>开始安装</code>。<br>
+<img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204191715811.png" alt="31.png"></p>
+<p>点击<code>ROOT密码</code>。<br>
+<img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204191715529.png" alt="32.png"></p>
+<p>设置密码，我这里设置<code>123456</code>（本机的，起个好记的就好），完成（点两次）。<br>
+<img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204191715950.png" alt="33.png"></p>
+<p>等待安装（根据自己的需求去创建用户吧，但是创建后<strong>可能</strong>某些操作需要root权限，不折腾就不要创了，昨晚搞CentOs8服务器差点崩溃，CentOs8是规定要创建用户的，CentOs7和CentOs8就跟windows7和windows10一样）。<br>
+<img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204191715681.png" alt="34.png"></p>
+<p>安装完毕，点击重启。<br>
+<img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204191715879.png" alt="35.png"></p>
+<p>选择第一个。<br>
+<img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204191715084.png" alt="36.png"></p>
+<p>我的用户名是<code>root</code>，密码<code>123456</code>。<br>
+输入用户名<code>root</code>，回车。<br>
+<img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204191715081.png" alt="37.png"></p>
+<p>输入密码<code>123456</code>（不可见的，输入就行了），回车。<br>
+<img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204191715817.png" alt="38.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204191715567.png" alt="39.png"></p>
+<hr>
+<h2 id="配置服务器静态ip（需要配置服务器动态ip的自己百度一下）">配置服务器静态ip（需要配置服务器动态ip的自己百度一下）</h2>
+<p>打开目录：<code>cd /etc/sysconfig/network-scripts/</code>（复制粘贴就好，这个复制粘贴有点麻烦，找不到的就手敲，正是这样才要用Xshell工具来远程，得先配置ip，忍一忍吧），回车。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204191715665.png" alt="40.png"></p>
+<p>我这里显示的是ifcfg-ens33，这里要说一下，我百度过，有些是32，也有1667777，先用<code>cd /etc/sysconfig/network-scripts/</code>进入目录，然后<code>ll</code>显示列表（<code>ls</code>也可以显示列表，只显示列表名）。<br>
+<img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204191715579.png" alt="41.png"></p>
+<p>编辑ifcfg-ens33：<code>vi ifcfg-ens33</code>（vi：进入编辑模式，文件名别敲错。），回车。<br>
+<img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204191715390.png" alt="42.png"></p>
+<p>按 <strong>i</strong> 字母键进入编辑模式（如果不显示下图的，肯定是<code>vi ifcfg-ens33</code>输入错了，自己检查一下，退出vi方法：按Esc（注意左下角），输入<code>:q!</code>（不保存退出））。<br>
+<img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204191715033.png" alt="43.png"></p>
+<p>看图</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#虚拟机IP相同，但是IPADDR后三位在3~240之间选择</span></span><br><span class="line">IPADDR=192.168.157.103</span><br><span class="line">NETMASK=255.255.255.0</span><br><span class="line">GATEWAY=192.168.157.2</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204191715855.png" alt="44.png"></p>
+<p>保存并退出：按Esc键，然后输入<code>:wq</code>（必须小写），回车。<br>
+<img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204191716011.png" alt="45.png"></p>
+<p>重启网络：<code>systemctl restart network</code>，回车。<br>
+查看ip：<code>ip addr</code>， 回车。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204191715505.png" alt="46.png"></p>
+<h2 id="配置本地的网络（只需要配置一次）">配置本地的网络（只需要配置一次）</h2>
+<p>这是本地访问虚拟机要配置的</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#选择使用下面的IP地址,最后一位为 1 ，子网掩码自动生成</span></span><br><span class="line">IP=192.168.157.1</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204191716004.png" alt="53.png"></p>
+<h2 id="使用Xshell连接虚拟机服务器">使用Xshell连接虚拟机服务器</h2>
+<p>新建会话，这里隧道要取消<code>转发X11连接到：</code><br>
+<img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204191716695.png" alt="47.png"></p>
+<p>新建会话，输入<code>IPADDR</code>名称<code>192.168.157.103</code>（输入名称后，下面的主机也是同步的。），然后点击连接。<br>
+<img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204191716180.png" alt="48.png"></p>
+<p>出现这个弹窗就说明99.99%成功了，如果没有就说明本地网络配置出错<br>
+<img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204191716984.png" alt="49.png"></p>
+<p>输入用户名<code>root</code>。<br>
+<img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204191716597.png" alt="50.png"></p>
+<p>输入用户名<code>123456</code>。<br>
+<img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204191716408.png" alt="51.png"></p>
+<p>okay。<br>
+<img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204191716369.png" alt="52.png"></p>
+<h2 id="安装宝塔面板">安装宝塔面板</h2>
+<p>宝塔官网：<a target="_blank" rel="noopener" href="https://www.bt.cn/">https://www.bt.cn/</a><br>
+宝塔Linux面板命令大全：<a target="_blank" rel="noopener" href="https://www.bt.cn/btcode.html%EF%BC%88%E4%B8%80%E5%AE%9A%E8%A6%81%E5%A4%9A%E7%9C%8B%EF%BC%89">https://www.bt.cn/btcode.html（一定要多看）</a></p>
+<p>这里标注几个常用的命令（本文章用到的）：<code>cd</code>、<code>clear</code>（清屏，也可以用Ctrl+L）、<code>ll</code>（当前列表，详细的展示列表），<code>ls</code>（当前列表，简洁的展示列表）、<code>vi</code> 文件名（编辑文件，按Esc：<code>:wq</code>保存并退出、<code>:q</code>（退出）、<code>:q!</code>强制不保存并退出）。</p>
+<h3 id="安装">安装</h3>
+<p>安装脚本：<code>yum install -y wget &amp;&amp; wget -O install.sh http://download.bt.cn/install/install_6.0.sh &amp;&amp; sh install.sh</code><br>
+PS：<strong>此脚本从官方复制过来的时间为2020年6月19日，仅限CentOs系统，如果距离已久，请到官网复制</strong>。</p>
+<p>右键随意复制粘贴，Xshell工具的好处（佛主：<a target="_blank" rel="noopener" href="https://www.kancloud.cn/jiangguowu/kfjsdkfjskd/1076752%EF%BC%89%E3%80%82">https://www.kancloud.cn/jiangguowu/kfjsdkfjskd/1076752）。</a><br>
+<img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204191716134.png" alt="54.png"></p>
+<p><code>DO you want to install Bt Panel tothe /www directory now?(y/n):</code>（现在是否要将Bt面板安装到/www目录？（是/否）：）。<br>
+按y，回车。<br>
+<img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204191716165.png" alt="55.png"></p>
+<p>宝塔面板访问地址：<code>http://192.168.157.103:8888/7a81976f</code>，<code>119.137.3.117</code>换成<code>192.168.157.103</code>自己设置的服务器ip（别傻了，只有本地才能访问）。</p>
+<p>username: <code>yq0g4uxd</code><br>
+password: <code>c937d4a9</code><br>
+<img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204191716300.png" alt="56.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204191716243.png" alt="57.png"></p>
+<p>点击<code>一键安装</code>（也可以不选择，然后自己去左边的软件商店自己选择安装）。<br>
+<img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204191716605.png" alt="58.png"></p>
+<p>建议设置一下<strong>安全入口</strong>、<strong>面板用户</strong>、<strong>面板密码</strong>（只能设置8位数，为了方便，我强行使用命令行将密码设置为<code>123456</code>，命令：<code>cd /www/server/panel &amp;&amp; python tools.py panel 123456</code>，更多的宝塔命令请到宝塔Linux面板命令大全查看：<a target="_blank" rel="noopener" href="https://blog.langting.top/usr/uploads/2020/06/1398140542.png">https://www.bt.cn/btcode.html</a>）<br>
+<img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/202204191716678.png" alt="59.png"></p>
+<hr>
+<h2 id="参考链接：">参考链接：</h2>
+<ul>
+<li>
+<p>配置步骤：</p>
+<ul>
+<li>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/langting/p/13167539.html">https://www.cnblogs.com/langting/p/13167539.html</a></p>
+</li>
+<li>
+<p><a target="_blank" rel="noopener" href="https://blog.langting.top/archives/117.html">https://blog.langting.top/archives/117.html</a></p>
+</li>
+</ul>
+</li>
+<li>
+<p>虚拟机网络相关问题的解决</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44080445/article/details/110714332">https://blog.csdn.net/weixin_44080445/article/details/110714332</a></li>
+</ul>
+</li>
+</ul>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Java/">Java</a><a class="post-meta__tags" href="/tags/Centos/">Centos</a><a class="post-meta__tags" href="/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/">虚拟机</a><a class="post-meta__tags" href="/tags/Linux/">Linux</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/97025298_p0.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2022/04/12/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><img class="next-cover" src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/94796009_p0.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">设计模式总览</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/03/29/leetcode-42-%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9C%80%E5%A4%A7%E7%9F%A9%E5%BD%A2/" title="Leetcode-084,085-单调栈-数组中的最大矩阵,最大矩阵"><img class="cover" src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/94796009_p0.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-29</div><div class="title">Leetcode-084,085-单调栈-数组中的最大矩阵,最大矩阵</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/EXKx_vaVAAA9c9Z.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Kaillliu</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">8</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://space.bilibili.com/51341210"><i class="fa-brands fa-bilibili"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://space.bilibili.com/51341210" target="_blank" title="bilibili"><i class="fa-brands fa-bilibili"></i></a><a class="social-icon" href="https://weibo.com/u/5412952403" target="_blank" title="weibo"><i class="fa-brands fa-weibo"></i></a><a class="social-icon" href="mailto:kaillliu@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E5%85%B7"><span class="toc-number">2.</span> <span class="toc-text">工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E6%9C%BAvmnet8-ip"><span class="toc-number">3.</span> <span class="toc-text">虚拟机vmnet8 ip</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="toc-number">4.</span> <span class="toc-text">创建虚拟机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85CentOs7%E7%B3%BB%E7%BB%9F"><span class="toc-number">5.</span> <span class="toc-text">安装CentOs7系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%9D%99%E6%80%81ip%EF%BC%88%E9%9C%80%E8%A6%81%E9%85%8D%E7%BD%AE%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8A%A8%E6%80%81ip%E7%9A%84%E8%87%AA%E5%B7%B1%E7%99%BE%E5%BA%A6%E4%B8%80%E4%B8%8B%EF%BC%89"><span class="toc-number">6.</span> <span class="toc-text">配置服务器静态ip（需要配置服务器动态ip的自己百度一下）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%9C%AC%E5%9C%B0%E7%9A%84%E7%BD%91%E7%BB%9C%EF%BC%88%E5%8F%AA%E9%9C%80%E8%A6%81%E9%85%8D%E7%BD%AE%E4%B8%80%E6%AC%A1%EF%BC%89"><span class="toc-number">7.</span> <span class="toc-text">配置本地的网络（只需要配置一次）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Xshell%E8%BF%9E%E6%8E%A5%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">8.</span> <span class="toc-text">使用Xshell连接虚拟机服务器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E5%AE%9D%E5%A1%94%E9%9D%A2%E6%9D%BF"><span class="toc-number">9.</span> <span class="toc-text">安装宝塔面板</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-number">9.1.</span> <span class="toc-text">安装</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5%EF%BC%9A"><span class="toc-number">10.</span> <span class="toc-text">参考链接：</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/04/19/%E5%9C%A8VMware%E4%B8%8A%E5%AE%89%E8%A3%85Centos7%E7%B3%BB%E7%BB%9F%E5%9C%A8VMware%E4%B8%8A%E5%AE%89%E8%A3%85Centos7%E7%B3%BB%E7%BB%9F/" title="在VMware上安装Centos7系统"><img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/97025298_p0.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="在VMware上安装Centos7系统"/></a><div class="content"><a class="title" href="/2022/04/19/%E5%9C%A8VMware%E4%B8%8A%E5%AE%89%E8%A3%85Centos7%E7%B3%BB%E7%BB%9F%E5%9C%A8VMware%E4%B8%8A%E5%AE%89%E8%A3%85Centos7%E7%B3%BB%E7%BB%9F/" title="在VMware上安装Centos7系统">在VMware上安装Centos7系统</a><time datetime="2022-04-19T09:18:13.000Z" title="发表于 2022-04-19 17:18:13">2022-04-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/12/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" title="设计模式总览"><img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/94796009_p0.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="设计模式总览"/></a><div class="content"><a class="title" href="/2022/04/12/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" title="设计模式总览">设计模式总览</a><time datetime="2022-04-12T09:27:23.000Z" title="发表于 2022-04-12 17:27:23">2022-04-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/02/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%AC%94%E8%AE%B0%E4%B9%8BAdapter%EF%BC%88%E9%80%82%E9%85%8D%E5%99%A8%EF%BC%89%E6%A8%A1%E5%BC%8F/" title="设计模式笔记之Adapter（适配器）模式"><img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/96167606_p0.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="设计模式笔记之Adapter（适配器）模式"/></a><div class="content"><a class="title" href="/2022/04/02/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%AC%94%E8%AE%B0%E4%B9%8BAdapter%EF%BC%88%E9%80%82%E9%85%8D%E5%99%A8%EF%BC%89%E6%A8%A1%E5%BC%8F/" title="设计模式笔记之Adapter（适配器）模式">设计模式笔记之Adapter（适配器）模式</a><time datetime="2022-04-02T05:36:59.000Z" title="发表于 2022-04-02 13:36:59">2022-04-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/02/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%AC%94%E8%AE%B0%E4%B9%8BFactory%EF%BC%88%E5%B7%A5%E5%8E%82%EF%BC%89%E6%A8%A1%E5%BC%8F/" title="设计模式笔记之Factory Method（工厂方法）模式"><img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/96493607_p0.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="设计模式笔记之Factory Method（工厂方法）模式"/></a><div class="content"><a class="title" href="/2022/04/02/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%AC%94%E8%AE%B0%E4%B9%8BFactory%EF%BC%88%E5%B7%A5%E5%8E%82%EF%BC%89%E6%A8%A1%E5%BC%8F/" title="设计模式笔记之Factory Method（工厂方法）模式">设计模式笔记之Factory Method（工厂方法）模式</a><time datetime="2022-04-02T05:36:59.000Z" title="发表于 2022-04-02 13:36:59">2022-04-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/02/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%AC%94%E8%AE%B0%E4%B9%8BIterator%EF%BC%88%E8%BF%AD%E4%BB%A3%E5%99%A8%EF%BC%89%E6%A8%A1%E5%BC%8F/" title="设计模式笔记之Iterator（迭代器）模式"><img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/96101415_p0.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="设计模式笔记之Iterator（迭代器）模式"/></a><div class="content"><a class="title" href="/2022/04/02/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%AC%94%E8%AE%B0%E4%B9%8BIterator%EF%BC%88%E8%BF%AD%E4%BB%A3%E5%99%A8%EF%BC%89%E6%A8%A1%E5%BC%8F/" title="设计模式笔记之Iterator（迭代器）模式">设计模式笔记之Iterator（迭代器）模式</a><time datetime="2022-04-02T05:36:59.000Z" title="发表于 2022-04-02 13:36:59">2022-04-02</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2022 By Kaillliu</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (true){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
