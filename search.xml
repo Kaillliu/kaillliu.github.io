@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>GitHub命令</title>
+      <link href="/2022/06/19/github%E6%8E%A8%E9%80%81/"/>
+      <url>/2022/06/19/github%E6%8E%A8%E9%80%81/</url>
+      
+        <content type="html"><![CDATA[<h1>1.先在github上面创建一个项目地址</h1><p><a href="https://blog.csdn.net/qq_34645412/article/details/80517184">https://blog.csdn.net/qq_34645412/article/details/80517184</a></p><h1>2.其次进入到本地项目的目录文件下面</h1><p>执行</p><ul><li>git init：初始化本地仓库</li></ul><p><img src="github%E6%8E%A8%E9%80%81.assets/20181213093225717.JPG" alt="img"></p><ul><li><p>git add . 添加全部已经修改的文件，准备commit 提交</p><p>该命令效果等同于 git add -A</p></li></ul><p><img src="github%E6%8E%A8%E9%80%81.assets/20181213093345792.JPG" alt="img"></p><ul><li><p>git commit -m ‘提交说明’  将修改后的文件提交到本地仓库，如：git commit -m ‘项目创建’</p><p><img src="github%E6%8E%A8%E9%80%81.assets/20181213093447855.JPG" alt="img"></p></li><li><p>连接到远程仓库，并将代码同步到远程仓库</p></li></ul><p>​git remote add origin 远程仓库地址</p><p><img src="github%E6%8E%A8%E9%80%81.assets/20181213093540534.JPG" alt="img"></p><ul><li><p>git pull origin master  // 把本地仓库的变化连接到远程仓库主分支</p></li><li><p>git push -u origin master  创建一个 upStream （上传流），并将本地代码通过这个 upStream 推送到 别名为 origin 的仓库中的 master 分支上，</p></li></ul><p>​-u ，就是创建 upStream 上传流，如果没有这个上传流就无法将代码推送到 github；同时，这个 upStream 只需要在初次推送代码的时候创建，以后就不用创建了</p><p>​到此执行完毕，查看分支提交状态确认是否提交完整</p><ul><li>git status</li></ul><p><img src="github%E6%8E%A8%E9%80%81.assets/20181213094152814.JPG" alt="img"></p><p>如果遇到：Updates were rejected because the remote contains work that you do的问题</p><p>执行git push -u origin master  前</p><p>执行git pull origin master</p><p>如果遇到Updates were rejected because the tip of your current branch is behind即:自己当前版本低于远程仓库版本</p><p>执行 git push -u origin master -f</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> GitHub </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> GitHub </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>CentOS 7 配置docket</title>
       <link href="/2022/05/09/CentOS%207%E9%85%8D%E7%BD%AEdocket/"/>
       <url>/2022/05/09/CentOS%207%E9%85%8D%E7%BD%AEdocket/</url>
