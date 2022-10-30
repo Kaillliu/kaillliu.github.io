@@ -1,0 +1,562 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>WDCNN预测CWRU数据集 | K A I</title><meta name="keywords" content="故障诊断"><meta name="author" content="Kaillliu"><meta name="copyright" content="Kaillliu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="WDCNN预测CWRU数据集">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WDCNN预测CWRU数据集">
+<meta property="og:url" content="http://kaillliu.github.io/2022/10/14/wcnn%E5%A4%84%E7%90%86cwru%E6%95%B0%E6%8D%AE%E9%9B%86/index.html">
+<meta property="og:site_name" content="K A I">
+<meta property="og:description" content="WDCNN预测CWRU数据集">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/Kaillliu/blog-img/96887683_p0_master1200.jpg">
+<meta property="article:published_time" content="2022-10-14T09:25:23.000Z">
+<meta property="article:modified_time" content="2022-10-30T06:10:24.788Z">
+<meta property="article:author" content="Kaillliu">
+<meta property="article:tag" content="深度学习">
+<meta property="article:tag" content="CNN">
+<meta property="article:tag" content="故障诊断">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://fastly.jsdelivr.net/gh/Kaillliu/blog-img/96887683_p0_master1200.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://kaillliu.github.io/2022/10/14/wcnn%E5%A4%84%E7%90%86cwru%E6%95%B0%E6%8D%AE%E9%9B%86/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="manifest" href="/pwa/manifest.json"/><link rel="apple-touch-icon" sizes="180x180" href="/pwa/apple-touch-icon.png"/><link rel="icon" type="image/png" sizes="32x32" href="/pwa/32.png"/><link rel="icon" type="image/png" sizes="16x16" href="/pwa/16.png"/><link rel="mask-icon" href="/pwa/safari-pinned-tab.svg" color="#5bbad5"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":600},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#263238","bgDark":"#1f1f1f","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'WDCNN预测CWRU数据集',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-10-30 14:10:24'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.1"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://fastly.jsdelivr.net/gh/Kaillliu/blog-img/EXKx_vaVAAA9c9Z.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">17</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">14</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://fastly.jsdelivr.net/gh/Kaillliu/blog-img/96887683_p0_master1200.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">K A I</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">WDCNN预测CWRU数据集</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-10-14T09:25:23.000Z" title="发表于 2022-10-14 17:25:23">2022-10-14</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-10-30T06:10:24.788Z" title="更新于 2022-10-30 14:10:24">2022-10-30</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD/">故障诊断</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>7分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="WDCNN预测CWRU数据集"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>故障诊断</h1>
+<ul>
+<li>轴承故障诊断算法步骤分解</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/image-20221026124807596.png" alt="轴承故障诊断算法步骤分解"></p>
+<h1>CWRU数据</h1>
+<p>​		在测试中，使用电火花加工(EDM)，在电机的驱动端和风扇端轴承(SKF深沟球轴承:6205-2RS JEM和6203-2RS JEM)上植入直径为0.007 - 0.028英寸(0.18 - 0.71 mm)的故障，故障分别被设置在滚动体、内圈和外圈上。每种故障轴承均被以同样的状态安装在试验台上，然后在0到3马力的电机负载下(大约电机转速为1797到1720 rpm)以恒速运行。</p>
+<p>在每次测试中，测量驱动端轴承壳体(DE)垂直方向上的加速度，在一些测试中也测量风扇端轴承壳体(FE)和电机支撑底板(BA)垂直方向上的加速度。某些测试使用的采样率为12 kHz，其他测试使用的采样率为48 kHz。</p>
+<p>​</p>
+<p>本次主要使用</p>
+<ul>
+<li><strong>48k Drive End Bearing Fault Data</strong></li>
+<li>使用48kHz采样频率，SKF6205深沟球轴承，驱动端数据，驱动端轴承壳体(DE)的采样数据</li>
+</ul>
+<p>使用三种不同的损伤直径 0.007inch，0.014inch，0.021inch；三种不同的故障，外圈6点钟方向、内圈、滚动体，9总不同的状态</p>
+<p>每个样本使用 2048个数据点，并做归一化处理</p>
+<p>4个数据集，1hp负载，2hp负载，3hp负载 ，以及前三个的并集</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/cwru%E6%95%B0%E6%8D%AE%E9%9B%86%E6%A6%82%E8%BF%B0.png" alt="img"></p>
+<h1>WDCNN</h1>
+<h2 id="概述">概述</h2>
+<p>本文章主要基于 Pytorch 复现WDCNN在CWRU数据集上的故障分类，未复现基于AdaBN的WDCNN和基于训练干扰的WDCNN的TiCNN模型</p>
+<h2 id="参考论文">参考论文</h2>
+<ul>
+<li>[1]张伟. 基于卷积神经网络的轴承故障诊断算法研究[D]. 哈尔滨工业大学, 2017.</li>
+<li>A New Deep Learning Model for Fault Diagnosis with Good Anti-Noise and Domain Adaptation Ability on Raw Vibration Signals</li>
+</ul>
+<h2 id="模型结构">模型结构</h2>
+<p>WDCNN的核心思想是通过使用1DCNN第一层的大卷积核，提取时序信号的特征；第一层为大卷积核，之后卷积层全部为 3×1 的小卷积核。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/image-20221025145305819.png" alt="WDCNN结构图"></p>
+<h2 id="数据集设置">数据集设置</h2>
+<ol>
+<li>
+<p>使用 采样频率为48kHz 1hp 工况的驱动端时序数据做数据集，数据包含十类数据</p>
+<ul>
+<li>正常数据 ：98.mat</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>故障宽度<br />（单位：mm）</th>
+<th>内圈（IR）</th>
+<th>滚动体（Ball）</th>
+<th>外圈（OR)<br />(center方向)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.18</td>
+<td>110</td>
+<td>123</td>
+<td>136</td>
+</tr>
+<tr>
+<td>0.36</td>
+<td>175</td>
+<td>190</td>
+<td>202</td>
+</tr>
+<tr>
+<td>0.53</td>
+<td>214</td>
+<td>227</td>
+<td>239</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>原始的时域信号</p>
+<ul>
+<li>136号数据的原始数据展示</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/image-20221029132133027.png" alt="136的原始时域信号"></p>
+</li>
+</ol>
+<p>​</p>
+<ol start="3">
+<li>
+<p>数据集参数设置</p>
+<p>为了模拟旋转机械的正常工况，将正常样本的数量设置为问题样本的10倍，并使用滑动窗口，对数据进行增强。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">设置项</th>
+<th>参数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">训练集比例</td>
+<td>0.7</td>
+</tr>
+<tr>
+<td style="text-align:left">验证集比例</td>
+<td>0.2</td>
+</tr>
+<tr>
+<td style="text-align:left">测试集比例</td>
+<td>0.1</td>
+</tr>
+<tr>
+<td style="text-align:left">单个样本的数据长度</td>
+<td>2048</td>
+</tr>
+<tr>
+<td style="text-align:left">滑动窗口的步长</td>
+<td>28</td>
+</tr>
+<tr>
+<td style="text-align:left">正常类别的样本量</td>
+<td>3000</td>
+</tr>
+<tr>
+<td style="text-align:left">故障类别的样本量</td>
+<td>300</td>
+</tr>
+<tr>
+<td style="text-align:left">总样本量</td>
+<td>5700</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ol>
+<h2 id="超参数的选择">超参数的选择</h2>
+<table>
+<thead>
+<tr>
+<th>超参数</th>
+<th>数据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>学习率</td>
+<td>0.001</td>
+</tr>
+<tr>
+<td>权重衰退</td>
+<td>0.005</td>
+</tr>
+<tr>
+<td>循环次数</td>
+<td>100</td>
+</tr>
+</tbody>
+</table>
+<h2 id="优化器和损失函数">优化器和损失函数</h2>
+<ul>
+<li>
+<p>优化器</p>
+<p>选用Adam优化器</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">optimizer = torch.optim.Adam(model.parameters(), lr = learning_rate, weight_decay=weight_dacay)</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>损失函数</p>
+<p>选用交叉熵损失函数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">criterion = nn.CrossEntropyLoss()</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="训练结果可视化">训练结果可视化</h2>
+<ul>
+<li>精度和loss的训练过程</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/image-20221025163024330.png" alt="精度和loss训练过程"></p>
+<ul>
+<li>
+<p>测试集精度</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/image-20221025163236619.png" alt="测试集精度"></p>
+</li>
+<li>
+<p>测试集混淆矩阵</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/image-20221025163408524.png" alt="测试集混淆矩阵"></p>
+<ul>
+<li>标准化</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/image-20221025163325625.png" alt="标准化混淆矩阵"></p>
+</li>
+</ul>
+<h2 id="T-sne-分类效果可视化">T-sne 分类效果可视化</h2>
+<ul>
+<li>
+<p>原始数据分布</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/image-20221025163612007.png" alt="原始数据分布"></p>
+</li>
+<li>
+<p>WDCNN倒数第二层的全连接层</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/image-20221025163745092.png" alt="WDCNN倒数第二层的全连接层"></p>
+</li>
+<li>
+<p>WDCNN分类结果的可视化</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/image-20221025163836054.png" alt="分类结果的可视化"></p>
+</li>
+</ul>
+<h1>图像处理模型</h1>
+<h2 id="概述-2">概述</h2>
+<p>基于 Pytorch ，将一维的时序振动信号通过短时傅里叶变换转化成灰度图，再通过OpenCv的伪彩色处理方法，将灰度图映射为彩色图，并将生成的图片送入图像分类的神经网络中</p>
+<h2 id="参考论文-2">参考论文</h2>
+<ul>
+<li>[1]刘飞, 陈仁文, 邢凯玲, 等. 基于迁移学习与深度残差网络的滚动轴承快速故障诊断算法[J]. 振动与冲击, 2022, 41(3): 154-164.</li>
+<li>[2]赵小强, 罗维兰. 改进卷积Lenet-5神经网络的轴承故障诊断方法[J]. 电子测量与仪器学报, 2022, 36(06): 113-125.</li>
+<li>[3]汤亮, 凡焱峰, 徐适斐, 等. 基于贝叶斯优化与改进LeNet-5的滚动轴承故障诊断[J]. 计量学报, 2022, 43(07): 913-919.</li>
+</ul>
+<h2 id="模型结构-2">模型结构</h2>
+<p>分别使用了 AlexNet 、ResNet - 18、ResNeXt -50 进行了测试，这里展示一下 参考论文1中的网络模型</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/image-20221026104144532.png" alt="Tl-ResNet"></p>
+<h2 id="数据集设置-2">数据集设置</h2>
+<ol>
+<li>
+<p>使用 采样频率为48kHz 1hp 工况的驱动端时序数据做数据集，数据包含十类数据</p>
+<ul>
+<li>正常数据 ：98.mat</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>故障宽度<br />（单位：mm）</th>
+<th>内圈（IR）</th>
+<th>滚动体（Ball）</th>
+<th>外圈（OR)<br />(center方向)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.18</td>
+<td>110</td>
+<td>123</td>
+<td>136</td>
+</tr>
+<tr>
+<td>0.36</td>
+<td>175</td>
+<td>190</td>
+<td>202</td>
+</tr>
+<tr>
+<td>0.53</td>
+<td>214</td>
+<td>227</td>
+<td>239</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>数据集参数设置</p>
+<p>为了模拟旋转机械的正常工况，将正常样本的数量设置为问题样本的10倍，并使用滑动窗口，对数据进行增强。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">设置项</th>
+<th>参数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">训练集比例</td>
+<td>0.7</td>
+</tr>
+<tr>
+<td style="text-align:left">验证集比例</td>
+<td>0.2</td>
+</tr>
+<tr>
+<td style="text-align:left">测试集比例</td>
+<td>0.1</td>
+</tr>
+<tr>
+<td style="text-align:left">单个样本的数据长度</td>
+<td>1024</td>
+</tr>
+<tr>
+<td style="text-align:left">滑动窗口的步长</td>
+<td>28</td>
+</tr>
+<tr>
+<td style="text-align:left">正常类别的样本量</td>
+<td>3000</td>
+</tr>
+<tr>
+<td style="text-align:left">故障类别的样本量</td>
+<td>300</td>
+</tr>
+<tr>
+<td style="text-align:left">总样本量</td>
+<td>5700</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>短时傅里叶变换(STFT)</p>
+<p>使用STFT将一维时域数据转化成频谱图，并通过OpenCV的伪彩色处理成彩色图片，以适应网络中的三通道输入</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/image-20221026105533356.png" alt="STFT转化"></p>
+</li>
+</ol>
+<h2 id="超参数的选择-2">超参数的选择</h2>
+<table>
+<thead>
+<tr>
+<th>超参数</th>
+<th>数据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>学习率</td>
+<td>0.001</td>
+</tr>
+<tr>
+<td>权重衰退</td>
+<td>0.00001</td>
+</tr>
+<tr>
+<td>循环次数</td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+<h2 id="优化器和损失函数-2">优化器和损失函数</h2>
+<ul>
+<li>
+<p>优化器</p>
+<p>选用Adam优化器，同时，过滤模型中不需要训练的层</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">optimizer = torch.optim.Adam(<span class="built_in">filter</span>(<span class="keyword">lambda</span> p: p.requires_grad, model.parameters()), lr = learning_rate, weight_decay=weight_decay)</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>损失函数</p>
+<p>选用交叉熵损失函数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">criterion = nn.CrossEntropyLoss()</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="训练结果可视化-2">训练结果可视化</h2>
+<ul>
+<li>
+<p>精度和loss的训练过程</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/image-20221026110307010.png" alt="ResNet18精度和loss的训练过程"></p>
+</li>
+<li>
+<p>测试集精度</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/image-20221026110348501.png" alt="测试集精度"></p>
+</li>
+<li>
+<p>测试集混淆矩阵</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/image-20221026110443220.png" alt="测试集混淆矩阵"></p>
+<ul>
+<li>标准化</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/image-20221026110527522.png" alt="标准化后的混淆矩阵"></p>
+</li>
+</ul>
+<h2 id="T-sne-分类效果可视化-2">T-sne 分类效果可视化</h2>
+<ul>
+<li>
+<p>ResNet18倒数第二层的全连接层</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/image-20221026122108186.png" alt="image-20221026122108186"></p>
+</li>
+<li>
+<p>ResNet18分类结果的可视化</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/image-20221026122126243.png" alt="image-20221026122126243"></p>
+</li>
+</ul>
+<h1>总结</h1>
+<ol>
+<li>
+<p><strong>WDCNN模型复现部分</strong></p>
+<p>​		由于是 17 年的论文，<code>WDCNN</code>在近几年的文章中经常被拿来做性能对比，故尝试复现论文中的模型。</p>
+<p>​		论文中，先是提出了<code>WDCNN</code>这个第一层宽卷积核算法，并在CWRU 12kHz不同负载的数据集上验证了<code>WDCNN</code>的准确率。然后，提出了将所有 BN 层的均值方差用测试集的均值方差替换，其他网络参数保持不变的基于<code>AdaBN-WDCNN</code>算法，通过对原始信号添加不同噪声的方式，验证算法的抗噪性能；并改变第一层卷积核大小，做实验展示了第一层卷积核在不同大小下模型的性能变化；还在变工况的情况下，展示了模型的迁移能力。</p>
+<p>​		最后，更改了<code>WDCNN</code>中的部分结构，提出了<code>Ti-CNN</code>模型，并验证了其有效性。</p>
+</li>
+<li>
+<p><strong>ResNet模型复现部分</strong><br>
+​		主要是通过将时序数据转化为二维灰度图，再通过OpenCV伪色彩处理，分为十类；</p>
+<p>​		论文中，主要是提出了<code>TL-ResNet</code>；将通过<code>ImageNet</code>预训练的<code>ResNet18</code>的layer1，layer2，layer3的参数冻结，只使用自己的数据去训练layer4和分类器。</p>
+<p>​		在模型的性能验证方面，主要使用了CWRU和PU 的轴承数据集，在不同的迭代次数<code>（2，10）</code>和输入通道<code>（灰度图和彩色图）</code>，不同的模型之中做对比实验，验证<code>TL-ResNet</code>的有效性。最后，使用了**<code>小样本</code>** 工况迁移的方法，得出小样本的大小为目标域数据集的 <code>１０％</code> 及以上时，应用小样本迁移才能取得明显的和稳定的准确率提升。</p>
+<p>​		最后和经典的故障诊断方法做比较，展示算法的有效性。</p>
+</li>
+<li>
+<p><strong>结论</strong></p>
+<p>​		在复现的过程中， 与论文中相比，选用了48kHz采样频率的数据，跑出来的模型精度与论文中选用的12kHz的数据对比相对较低，但是也取得了不错的效果。当把故障类别的样本和正常类别的样本比例设置为等比的时候，模型的精度能上升 1%，说明故障的样本比例和样本量对故障诊断的效果有一定影响。</p>
+<p>​		目前还未做抗噪性实验，打算通过随机增加高斯白噪声的方式，对原始数据集进行处理，再进行训练和测试。</p>
+<p>​		总的来看，故障样本量对模型的分类精度有较大影响，并且，在实际生产中，故障的样本量也是较少的；如何对模型进行优化，使其在高噪声，工况复杂的工况下保持良好的分类精度是目前故障诊断的研究方向。</p>
+<p>​		农机备件的故障诊断的话，实验台的设计和备件的选择，以及备件的故障分类都至关重要；并且，基于振动信号的故障诊断对传感器的采样频率有较高要求，高采样频率能更好的反应旋转部件的运行情况，所以需要使用高采样频率的加速度传感器。还需要模拟不同负载，不同转速下的工况，采集数据并放入模型中实验。</p>
+</li>
+</ol>
+<h1>程序完整代码</h1>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a><a class="post-meta__tags" href="/tags/CNN/">CNN</a><a class="post-meta__tags" href="/tags/%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD/">故障诊断</a></div><div class="post_share"><div class="social-share" data-image="https://fastly.jsdelivr.net/gh/Kaillliu/blog-img/96887683_p0_master1200.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2022/06/19/github%E6%8E%A8%E9%80%81/"><img class="next-cover" src="https://fastly.jsdelivr.net/gh/Kaillliu/blog-img/96167606_p0.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">GitHub命令</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://fastly.jsdelivr.net/gh/Kaillliu/blog-img/EXKx_vaVAAA9c9Z.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Kaillliu</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">17</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">14</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://space.bilibili.com/51341210"><i class="fa-brands fa-bilibili"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://space.bilibili.com/51341210" target="_blank" title="bilibili"><i class="fa-brands fa-bilibili"></i></a><a class="social-icon" href="https://weibo.com/u/5412952403" target="_blank" title="weibo"><i class="fa-brands fa-weibo"></i></a><a class="social-icon" href="mailto:kaillliu@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">故障诊断</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">CWRU数据</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">3.</span> <span class="toc-text">WDCNN</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">3.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%AE%BA%E6%96%87"><span class="toc-number">3.2.</span> <span class="toc-text">参考论文</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B%E7%BB%93%E6%9E%84"><span class="toc-number">3.3.</span> <span class="toc-text">模型结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86%E8%AE%BE%E7%BD%AE"><span class="toc-number">3.4.</span> <span class="toc-text">数据集设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B6%85%E5%8F%82%E6%95%B0%E7%9A%84%E9%80%89%E6%8B%A9"><span class="toc-number">3.5.</span> <span class="toc-text">超参数的选择</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%98%E5%8C%96%E5%99%A8%E5%92%8C%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0"><span class="toc-number">3.6.</span> <span class="toc-text">优化器和损失函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%AD%E7%BB%83%E7%BB%93%E6%9E%9C%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="toc-number">3.7.</span> <span class="toc-text">训练结果可视化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#T-sne-%E5%88%86%E7%B1%BB%E6%95%88%E6%9E%9C%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="toc-number">3.8.</span> <span class="toc-text">T-sne 分类效果可视化</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">4.</span> <span class="toc-text">图像处理模型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0-2"><span class="toc-number">4.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%AE%BA%E6%96%87-2"><span class="toc-number">4.2.</span> <span class="toc-text">参考论文</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B%E7%BB%93%E6%9E%84-2"><span class="toc-number">4.3.</span> <span class="toc-text">模型结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86%E8%AE%BE%E7%BD%AE-2"><span class="toc-number">4.4.</span> <span class="toc-text">数据集设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B6%85%E5%8F%82%E6%95%B0%E7%9A%84%E9%80%89%E6%8B%A9-2"><span class="toc-number">4.5.</span> <span class="toc-text">超参数的选择</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%98%E5%8C%96%E5%99%A8%E5%92%8C%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-2"><span class="toc-number">4.6.</span> <span class="toc-text">优化器和损失函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%AD%E7%BB%83%E7%BB%93%E6%9E%9C%E5%8F%AF%E8%A7%86%E5%8C%96-2"><span class="toc-number">4.7.</span> <span class="toc-text">训练结果可视化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#T-sne-%E5%88%86%E7%B1%BB%E6%95%88%E6%9E%9C%E5%8F%AF%E8%A7%86%E5%8C%96-2"><span class="toc-number">4.8.</span> <span class="toc-text">T-sne 分类效果可视化</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">5.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">6.</span> <span class="toc-text">程序完整代码</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/10/14/wcnn%E5%A4%84%E7%90%86cwru%E6%95%B0%E6%8D%AE%E9%9B%86/" title="WDCNN预测CWRU数据集"><img src="https://fastly.jsdelivr.net/gh/Kaillliu/blog-img/96887683_p0_master1200.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="WDCNN预测CWRU数据集"/></a><div class="content"><a class="title" href="/2022/10/14/wcnn%E5%A4%84%E7%90%86cwru%E6%95%B0%E6%8D%AE%E9%9B%86/" title="WDCNN预测CWRU数据集">WDCNN预测CWRU数据集</a><time datetime="2022-10-14T09:25:23.000Z" title="发表于 2022-10-14 17:25:23">2022-10-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/19/github%E6%8E%A8%E9%80%81/" title="GitHub命令"><img src="https://fastly.jsdelivr.net/gh/Kaillliu/blog-img/96167606_p0.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="GitHub命令"/></a><div class="content"><a class="title" href="/2022/06/19/github%E6%8E%A8%E9%80%81/" title="GitHub命令">GitHub命令</a><time datetime="2022-06-19T14:46:23.000Z" title="发表于 2022-06-19 22:46:23">2022-06-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/09/CentOS%207%E9%85%8D%E7%BD%AEdocket/" title="CentOS 7 配置docket"><img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/97079772_p0_master1200.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CentOS 7 配置docket"/></a><div class="content"><a class="title" href="/2022/05/09/CentOS%207%E9%85%8D%E7%BD%AEdocket/" title="CentOS 7 配置docket">CentOS 7 配置docket</a><time datetime="2022-05-09T07:32:13.000Z" title="发表于 2022-05-09 15:32:13">2022-05-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/21/Nginx%E5%AD%A6%E4%B9%A0%E5%85%B6%E4%BA%94/" title="Nginx学习（五）--- 与Tomcat结合"><img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/94758289_p0.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Nginx学习（五）--- 与Tomcat结合"/></a><div class="content"><a class="title" href="/2022/04/21/Nginx%E5%AD%A6%E4%B9%A0%E5%85%B6%E4%BA%94/" title="Nginx学习（五）--- 与Tomcat结合">Nginx学习（五）--- 与Tomcat结合</a><time datetime="2022-04-21T09:00:00.000Z" title="发表于 2022-04-21 17:00:00">2022-04-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/21/Nginx%E5%AD%A6%E4%B9%A0%E5%85%B6%E4%B8%89/" title="Nginx学习（三）--- 反向代理"><img src="https://cdn.jsdelivr.net/gh/Kaillliu/blog-img/96887683_p0_master1200.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Nginx学习（三）--- 反向代理"/></a><div class="content"><a class="title" href="/2022/04/21/Nginx%E5%AD%A6%E4%B9%A0%E5%85%B6%E4%B8%89/" title="Nginx学习（三）--- 反向代理">Nginx学习（三）--- 反向代理</a><time datetime="2022-04-21T08:53:00.000Z" title="发表于 2022-04-21 16:53:00">2022-04-21</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2022 By Kaillliu</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (true){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
